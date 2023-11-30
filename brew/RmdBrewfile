@@ -1,0 +1,13 @@
+# RMD Brewfile
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "jesseduffield/lazygit"
+
+# Dev Tools
+brew "awscli"
+brew "geckodriver"
+brew "gh"
+brew "imagemagick"
+brew "libyaml"
+brew "ruby-build"
+brew "rbenv"

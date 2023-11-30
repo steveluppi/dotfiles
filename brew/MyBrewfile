@@ -1,0 +1,17 @@
+# Personal Core Brewfile
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "jesseduffield/lazygit"
+
+# Dev Tools
+brew "bat"
+brew "figlet"
+brew "jq"
+brew "ripgrep"
+brew "task"
+brew "tmux"
+brew "jesseduffield/lazygit/lazygit"
+
+cask "hammerspoon"
+cask "meld"
+cask "qmk-toolbox"
