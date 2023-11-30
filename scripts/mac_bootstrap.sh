@@ -9,14 +9,28 @@ if [ ! -d ~/.dotfiles ]; then
 	git clone https://github.com/steveluppi/dotfiles ~/.dotfiles
 else
 	echo "[$(date '+%Y-%m-%d %H:%M')] Getting Latest Dotfiles"
-	cd ~/.dotfiles; git pull; cd ~
-
+	cd ~/.dotfiles; git pull; cd ~;
 fi
 
+# Prompt for if this is a work setup
+echo "Time to learn about how this is getting setup"
+read -p "Is this a RMD Setup [yN]?" yn
+
 # # Homebrew
-# echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
-# export NONINTERACTIVE=1
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-# brew bundle --file ~/.dotfiles/brew/Brewfile
+which brew
+if [ ! $? -eq 0]; then
+	echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
+	# export NONINTERACTIVE=1
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+	echo "[$(date '+%Y-%m-%d %H:%M')] Homebrew already installed"
+fi
+
+echo "[$(date '+%Y-%m-%d %H:%M')] Installing Personal Brew Items"
+# brew bundle --file ~/.dotfiles/brew/MyBrewfile
+if [ "$yn" =~ [yY] ]; then
+	echo "[$(date '+%Y-%m-%d %H:%M')] Installing RubiconMD Brew Items"
+	# brew bundle --file ~/.dotfiles/brew/RmdBrewfile
+fi
 
