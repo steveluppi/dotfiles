@@ -18,19 +18,22 @@ read -p "Is this a RMD Setup [yN]?" yn
 
 # # Homebrew
 which brew
-if [ ! $? -eq 0]; then
+if [[ $? -eq 0]]
+then
+	echo "[$(date '+%Y-%m-%d %H:%M')] Homebrew already installed"
+else
 	echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
 	# export NONINTERACTIVE=1
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-	echo "[$(date '+%Y-%m-%d %H:%M')] Homebrew already installed"
 fi
 
 echo "[$(date '+%Y-%m-%d %H:%M')] Installing Personal Brew Items"
-# brew bundle --file ~/.dotfiles/brew/MyBrewfile
+
+brew bundle --file ~/.dotfiles/brew/MyBrewfile
+
 if [ "$yn" =~ [yY] ]; then
 	echo "[$(date '+%Y-%m-%d %H:%M')] Installing RubiconMD Brew Items"
-	# brew bundle --file ~/.dotfiles/brew/RmdBrewfile
+	brew bundle --file ~/.dotfiles/brew/RmdBrewfile
 fi
 
