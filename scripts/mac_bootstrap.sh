@@ -18,7 +18,7 @@ read -p "Is this a RMD Setup [yN]?" yn
 
 # # Homebrew
 which brew
-if [[ $? -eq 0]]
+if [[ $? -eq 0 ]]
 then
 	echo "[$(date '+%Y-%m-%d %H:%M')] Homebrew already installed"
 else
@@ -32,8 +32,15 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing Personal Brew Items"
 
 brew bundle --file ~/.dotfiles/brew/MyBrewfile
 
-if [ "$yn" =~ [yY] ]; then
+if [[ "$yn" =~ yY ]]; then
 	echo "[$(date '+%Y-%m-%d %H:%M')] Installing RubiconMD Brew Items"
 	brew bundle --file ~/.dotfiles/brew/RmdBrewfile
 fi
 
+if [ ! -d ~/.tmux/plugins/tmp ]; then
+	echo "[$(date '+%Y-%m-%d %H:%M')] Installing Tmux TPM"
+	git clone http://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+	echo "[$(date '+%Y-%m-%d %H:%M')] Getting latest TPM"
+	cd ~/.tmux/plugins/tmp; git pull; cd ~;
+fi
