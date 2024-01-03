@@ -10,3 +10,5 @@ brew "gh"
 brew "imagemagick"
 brew "ruby-build"
 brew "rbenv"
+
+cask "session-manager-plugin"

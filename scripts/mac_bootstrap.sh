@@ -18,8 +18,7 @@ read -p "Is this a RMD Setup [yN]?" yn
 
 # # Homebrew
 which brew
-if [[ $? -eq 0 ]]
-then
+if [[ $? -eq 0 ]]; then
 	echo "[$(date '+%Y-%m-%d %H:%M')] Homebrew already installed"
 else
 	echo "[$(date '+%Y-%m-%d %H:%M')] Installing Homebrew"
@@ -32,7 +31,7 @@ echo "[$(date '+%Y-%m-%d %H:%M')] Installing Personal Brew Items"
 
 brew bundle --file ~/.dotfiles/brew/MyBrewfile
 
-if [[ "$yn" =~ yY ]]; then
+if [[ "$yn" =~ [yY] ]]; then
 	echo "[$(date '+%Y-%m-%d %H:%M')] Installing RubiconMD Brew Items"
 	brew bundle --file ~/.dotfiles/brew/RmdBrewfile
 fi
