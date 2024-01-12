@@ -41,6 +41,25 @@ require('lazy').setup({
       vim.cmd.colorscheme("catppuccin")
     end
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    config = function()
+      require('neo-tree').setup({
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false }
+        }
+      })
+      vim.keymap.set('n', '<leader>n', '<cmd>Neotree toggle reveal<CR>')
+    end
+  },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -174,7 +193,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
@@ -620,6 +639,18 @@ require('lspconfig').rubocop.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+require('lspconfig').solargraph.setup {
+  settings = {
+    solargraph = {
+      diagnostics = false, -- Use rubocop LSP directly
+      autoformat = false,
+      formatting = false,
+      useBundler = true,
+    },
+  },
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -672,6 +703,3 @@ cmp.setup {
     { name = 'path' },
   },
 }
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
