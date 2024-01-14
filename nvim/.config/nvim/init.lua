@@ -27,6 +27,10 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   {
+    "chrisbra/csv.vim",
+    ft = "csv",
+  },
+  {
     'catppuccin/nvim',
     config = function()
       require("catppuccin").setup({
