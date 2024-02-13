@@ -64,6 +64,26 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>n', '<cmd>Neotree toggle reveal<CR>')
     end
   },
+  {
+    "Wansmer/treesj",
+    -- keys = {
+    --   { "+j", ":TSJJoin<cr>",  silent = true },
+    --   { "+s", ":TSJSplit<cr>", silent = true },
+    -- },
+    config = function()
+      require('treesj').setup({
+        langs = {
+          ruby = {
+            both = {
+              no_format_with = {}
+            }
+          }
+        }
+      })
+      vim.keymap.set('n', 'gS', '<cmd>TSJSplit<CR>')
+      vim.keymap.set('n', 'gJ', '<cmd>TSJJoin<CR>')
+    end
+  },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -214,7 +234,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',   opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -294,6 +314,21 @@ require('lazy').setup({
       })
     end,
   } -- { import = 'custom.plugins' },
+  ,
+  { "olacin/telescope-cc.nvim" },
+  {
+    "vimwiki/vimwiki",
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          path = '~/.vimwiki/',
+          syntax = 'default',
+          ext = '.vimwiki'
+        }
+      }
+    end,
+  },
+
 }, {})
 
 -- [[ Setting options ]]
@@ -374,10 +409,27 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    conventional_commits = {
+      theme = "ivy", -- custom theme
+      action = function(entry)
+        -- entry = {
+        --     display = "feat       A new feature",
+        --     index = 7,
+        --     ordinal = "feat",
+        --     value = feat"
+        -- }
+        vim.print(entry)
+      end,
+      include_body_and_footer = true, -- Add prompts for commit body and footer
+    },
+  },
 }
-
+--
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+-- Enable telescope conventional_commits if installed
+pcall(require('telescope').load_extension, 'conventional_commits')
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
@@ -707,3 +759,9 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.shiftround = true
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
