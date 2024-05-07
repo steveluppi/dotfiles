@@ -328,7 +328,24 @@ require('lazy').setup({
       }
     end,
   },
-
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      plugins = {
+        tmux = {
+          enabled = false,
+        },
+        wezterm = {
+          enabled = false,
+          -- can be either an absolute font size or the number of incremental steps
+          font = "+4", -- (10% increase per step)
+        },
+      }
+    },
+    config = function()
+      vim.keymap.set('n', 'Z', '<cmd>ZenMode<CR>')
+    end,
+  }
 }, {})
 
 -- [[ Setting options ]]
@@ -340,6 +357,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -765,3 +783,6 @@ vim.o.shiftwidth = 2
 vim.o.shiftround = true
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
+
+vim.keymap.set('n', '<leader>y', '0"+y$')
+vim.keymap.set('v', '<leader>y', '"+y')
