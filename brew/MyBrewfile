@@ -18,6 +18,5 @@ brew "tmux"
 brew "jesseduffield/lazygit/lazygit"
 
 cask "hammerspoon"
-cask "meld"
 cask "qmk-toolbox"
 cask "wezterm"
