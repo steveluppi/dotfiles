@@ -39,7 +39,7 @@ data.location=/Users/steveluppi/.task
 #include solarized-light-256.theme
 #include no-color.theme
 
-news.version=2.6.0
+news.version=3.0.2
 
 uda.priority.default=M
 
@@ -51,6 +51,9 @@ report.ls.sort=urgency-
 # report.next.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,ID,Urg
 
 context.focus.read=+next
-context.focus.write=+next
+# context.focus.write=+next
 context.jira.read=+ticket or +jira
 context.review.read=project:review
+context.today.read=+today
+context.osh.read=-pause (+osh or project:OSH)
+context.clean.read=-pause
