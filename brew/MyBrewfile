@@ -17,6 +17,8 @@ brew "task"
 brew "tmux"
 brew "jesseduffield/lazygit/lazygit"
 
+cask "jordanbaird-ice"
+cask "gpg-suite-no-mail"
 cask "hammerspoon"
 cask "qmk-toolbox"
 cask "wezterm"
