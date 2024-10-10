@@ -39,7 +39,7 @@ data.location=/Users/steveluppi/.task
 #include solarized-light-256.theme
 #include no-color.theme
 
-news.version=3.0.2
+news.version=3.1.0
 
 uda.priority.default=M
 
