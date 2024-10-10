@@ -19,12 +19,22 @@ config.color_scheme = 'Catppuccin Frappe'
 config.colors = {
   background= '#181818'
 }
-config.window_background_opacity = .90
 config.macos_window_background_blur = 20
 -- config.font = wezterm.font 'SpaceMono Nerd Font Mono'
 config.font = wezterm.font 'FiraCode Nerd Font Mono'
 config.font_size = 18
 config.hide_tab_bar_if_only_one_tab = true
+
+config.window_background_image = '/Users/steveluppi/Pictures/IMG_0153.JPG'
+config.window_background_opacity = 1
+config.window_background_image_hsb = {
+    brightness = .3,
+}
+-- config.background ={
+--     source = {
+--         File = '/Users/steveluppi/Pictures/IMG_0153.JPG'
+--     }
+-- }
 
 ---Hyperlinks
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
