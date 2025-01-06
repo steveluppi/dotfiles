@@ -5,6 +5,7 @@ tap "jesseduffield/lazygit"
 
 # Dev Tools
 brew "awscli"
+brew "ffmpeg"
 brew "geckodriver"
 brew "gh"
 brew "imagemagick"
