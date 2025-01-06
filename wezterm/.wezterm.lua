@@ -28,7 +28,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_background_image = '/Users/steveluppi/Pictures/IMG_0153.JPG'
 config.window_background_opacity = 1
 config.window_background_image_hsb = {
-    brightness = .3,
+    brightness = .2,
 }
 -- config.background ={
 --     source = {
