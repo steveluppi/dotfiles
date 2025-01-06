@@ -27,7 +27,7 @@ data.location=/Users/steveluppi/.task
 #include light-16.theme
 #include light-256.theme
 #include dark-16.theme
-#include dark-256.theme
+include dark-256.theme
 #include dark-red-256.theme
 #include dark-green-256.theme
 #include dark-blue-256.theme
