@@ -12,6 +12,10 @@ indent_character: '|'
 journals:
   default:
     encrypt: true
+    journal: /Users/steveluppi/.jrnl/2025.txt
+    display_format: fancy
+  2024:
+    encrypt: true
     journal: /Users/steveluppi/.jrnl/2024.txt
     display_format: fancy
 linewrap: 79
