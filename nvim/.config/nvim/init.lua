@@ -25,6 +25,7 @@ require('lazy').setup({
 
   -- Git related plugins
   'tpope/vim-fugitive',
+  'tpope/vim-projectionist',
   'tpope/vim-rhubarb',
   {
     "chrisbra/csv.vim",
