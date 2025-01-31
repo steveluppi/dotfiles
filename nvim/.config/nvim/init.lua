@@ -28,6 +28,14 @@ require('lazy').setup({
   'tpope/vim-projectionist',
   'tpope/vim-rhubarb',
   {
+    'sotte/presenting.vim',
+    init = function()
+      vim.g.presenting_font_large = 'starwars'
+      vim.g.presenting_font_small = 'big'
+      vim.g.presenting_top_margin = 2
+    end
+  },
+  {
     "chrisbra/csv.vim",
     ft = "csv",
   },
@@ -792,3 +800,8 @@ vim.o.tabstop = 2
 
 vim.keymap.set('n', '<leader>y', '0"+y$')
 vim.keymap.set('v', '<leader>y', '"+y')
+
+vim.cmd([[
+    " autocmd!
+    autocmd FileType vimwiki let b:presenting_slide_separator = '----'
+]])
