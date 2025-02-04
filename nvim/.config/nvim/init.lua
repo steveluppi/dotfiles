@@ -13,6 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.cc = '80,120'
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
