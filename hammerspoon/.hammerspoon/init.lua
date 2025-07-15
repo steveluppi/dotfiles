@@ -42,6 +42,10 @@ function modal_shorts:exited() hs.alert'Exited Shortcuts Mode' end
 modal_shorts:bind(MY_MODS, 'pad.', function() hs.alert.show('Shortcuts') end)
 modal_shorts:bind(MY_MODS, '.', function() hs.alert.show('Shortcuts') end)
 modal_shorts:bind(MY_MODS, 'pad*', function() modal_shorts:exit() end)
+modal_shorts:bind('', 'F5', function() hs.eventtap.keyStroke('cmd', 'r') end)
+modal_shorts:bind('', 'pad1', send_it('Aetna Better Health of Oklahoma'))
+modal_shorts:bind('', 'pad2', send_it('aetna_ok'))
+modal_shorts:bind('', 'pad3', send_it('Aetna::RosterHeaderValidator'))
 
 modal_meet = hs.hotkey.modal.new(MY_MODS, 'pad5')
 function modal_meet:entered() hs.alert'Entered Meeting Mode' end
@@ -70,8 +74,15 @@ modal_dev:bind('', 'pad0', tmux_send_it('0'))
 modal_dev:bind('', 'pad1', tmux_send_it('1'))
 modal_dev:bind('', 'pad2', tmux_send_it('2'))
 modal_dev:bind('', 'pad3', tmux_send_it('3'))
-modal_dev:bind('', 'pad4', tmux_send_it('4'))
-modal_dev:bind('', 'pad5', tmux_send_it('5'))
+modal_dev:bind('', 'pad7', send_it('1gt'))
+modal_dev:bind('', 'pad8', send_it('2gt'))
+modal_dev:bind('', 'pad9', send_it('3gt'))
+modal_dev:bind('', 'F1', tmux_send_it('0'))
+modal_dev:bind('', 'F2', tmux_send_it('1'))
+modal_dev:bind('', 'F3', tmux_send_it('2'))
+modal_dev:bind('', 'F4', tmux_send_it('3'))
+modal_dev:bind('', 'F9', send_it('1gt'))
+modal_dev:bind('', 'F10', send_it('2gt'))
 
 modal_test = hs.hotkey.modal.new(MY_MODS, 'pad3')
 function modal_test:entered() hs.alert'Entered Test Mode' end
@@ -80,6 +91,36 @@ modal_test:bind(MY_MODS,'pad.', function() hs.alert.show('Test') end)
 modal_test:bind(MY_MODS,'.', function() hs.alert.show('Test') end)
 modal_test:bind(MY_MODS, 'pad*', function() modal_test:exit() end)
 
+modal_demo = hs.hotkey.modal.new(MY_MODS, 'p')
+function modal_demo:entered() hs.alert'Entered Demo Mode' end
+function modal_demo:exited() hs.alert'Exited Demo Mode' end
+modal_demo:bind('', 'F7', send_it('Can you advise which med would be best to decrease and in general how you approach orthostatic hypotension picture with combined systolic-diastolic hf in older adults?'))
+modal_demo:bind('', 'F8', send_it('Given her age, comorbidities, and fall history, I would like to decrease some of her bp meds.'))
+modal_demo:bind('', 'F9', send_it('75-year-old female per home care RN, pt is having a lot of near-falls and low blood pressures but did not provide readings. BP in clinic today was 123/76 lying, 118/74 sitting, 104/64 standing.'))
+modal_demo:bind(MY_MODS,'pad.', function() hs.alert.show('Demo') end)
+modal_demo:bind(MY_MODS,'.', function() hs.alert.show('Demo') end)
+modal_demo:bind(MY_MODS, 'p', function() modal_demo:exit() end)
+
+modal_vim = hs.hotkey.modal.new(MY_MODS, 'F12')
+function modal_vim:entered() hs.alert'Entered Vim Mode' end
+function modal_vim:exited() hs.alert'Exited Vim Mode' end
+-- modal_vim:bind('','F1', send_it('1gt'))
+-- modal_vim:bind('','F2', send_it('2gt'))
+modal_vim:bind('', 'F1', function()
+  sp = hs.spaces.missionControlSpaceNames()
+  local log = hs.logger.new('windowPos','debug')
+  log.i(hs.inspect.inspect(sp))
+  hs.spaces.gotoSpace(3)
+end)
+modal_vim:bind('','F3', send_it('3gt'))
+modal_vim:bind('','F4', send_it('4gt'))
+modal_vim:bind('','F5', tmux_send_it('1'))
+modal_vim:bind('','F6', tmux_send_it('2'))
+modal_vim:bind(MY_MODS,'pad.', function() hs.alert.show('Vim') end)
+modal_vim:bind(MY_MODS,'.', function() hs.alert.show('Vim') end)
+modal_vim:bind(MY_MODS, 'F12', function() modal_vim:exit() end)
+
+--
 -- Work, email and personal zoom link from a hotkey!
 hs.hotkey.bind(MY_MODS, "e", send_it("steve@rubiconmd.com"))
 hs.hotkey.bind(MY_MODS, "z", send_it("https://rubiconmd.zoom.us/j/7111411118"))
