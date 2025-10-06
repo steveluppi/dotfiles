@@ -39,7 +39,7 @@ include dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
-news.version=3.3.0
+news.version=3.4.1
 
 uda.priority.default=M
 
@@ -56,4 +56,11 @@ context.jira.read=+ticket or +jira
 context.review.read=project:review
 context.today.read=+today
 context.osh.read=-pause (+osh or project:OSH)
-context.clean.read=-pause
+context.clean.read=-pause -deep
+
+
+uda.delegated.type=string
+uda.delegated.values=yes,no
+uda.estimate.label=Del
+uda.delegated.default)=no
+urgency.uda.delegated.coefficient=-50
