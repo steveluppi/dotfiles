@@ -17,24 +17,24 @@ end
 config.color_scheme = 'Catppuccin Frappe'
 -- config.color_scheme = 'Catppuccin Latte'
 config.colors = {
-  background= '#181818'
+  -- background= '#000000'
+  -- background= '#ffffff'
+  -- background= '#181818'
+  -- background= '#eeeeee'
 }
 config.macos_window_background_blur = 20
+config.font = wezterm.font 'SauceCodePro NFM'
 -- config.font = wezterm.font 'SpaceMono Nerd Font Mono'
-config.font = wezterm.font 'FiraCode Nerd Font Mono'
+-- config.font = wezterm.font 'FiraCode Nerd Font Mono'
 config.font_size = 18
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_background_image = '/Users/steveluppi/Pictures/IMG_0153.JPG'
-config.window_background_opacity = 1
+-- config.window_background_image = '/Users/steveluppi/Pictures/wallpaper.jpg'
+-- config.window_background_image = '/Users/steveluppi/Pictures/IMG_0153.JPG'
+--config.window_background_opacity = .5
 config.window_background_image_hsb = {
-    brightness = .2,
+    brightness = .085,
 }
--- config.background ={
---     source = {
---         File = '/Users/steveluppi/Pictures/IMG_0153.JPG'
---     }
--- }
 
 ---Hyperlinks
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
@@ -51,7 +51,7 @@ table.insert(config.hyperlink_rules, {
 -- JIRA cards (PE-411)
 table.insert(config.hyperlink_rules, {
   regex = [[([A-Z]+-\d+)]],
-  format = "https://rubiconmd.atlassian.net/browse/$1",
+  format = "https://cvs-hcd.atlassian.net/browse/$1",
 })
 
 -- This is added to support zenmode
