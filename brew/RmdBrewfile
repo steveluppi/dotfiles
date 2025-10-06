@@ -5,11 +5,14 @@ tap "jesseduffield/lazygit"
 
 # Dev Tools
 brew "awscli"
+brew "coreutils"
 brew "ffmpeg"
 brew "geckodriver"
 brew "gh"
 brew "imagemagick"
+brew "ollama"
 brew "ruby-build"
 brew "rbenv"
 
 cask "session-manager-plugin"
+cask "there"
