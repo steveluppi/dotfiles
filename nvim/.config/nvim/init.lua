@@ -28,6 +28,7 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-projectionist',
   'tpope/vim-rhubarb',
+  -- 'rlue/vim-fold-rspec',
   {
     'sotte/presenting.vim',
     init = function()
@@ -714,21 +715,28 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
-require('lspconfig').rubocop.setup {
+-- require('lspconfig').rubocop.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
+vim.lsp.config('rubocop', {
   capabilities = capabilities,
   on_attach = on_attach,
-}
-require('lspconfig').solargraph.setup {
+})
+
+-- require('lspconfig').solargraph.setup {
+--   settings = {
+--     solargraph = {
+--       diagnostics = false, -- Use rubocop LSP directly
+--       autoformat = false,
+--       formatting = false,
+--       useBundler = true,
+--     },
+--   },
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
+vim.lsp.config('solargraph', {
   settings = {
     solargraph = {
       diagnostics = false, -- Use rubocop LSP directly
@@ -739,7 +747,7 @@ require('lspconfig').solargraph.setup {
   },
   capabilities = capabilities,
   on_attach = on_attach,
-}
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -798,9 +806,13 @@ vim.o.shiftwidth = 2
 vim.o.shiftround = true
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
+-- vim.o.foldlevel = 3
+-- vim.o.foldmethod = "syntax"
 
 vim.keymap.set('n', '<leader>y', '0"+y$')
 vim.keymap.set('v', '<leader>y', '"+y')
+
+vim.keymap.set('n', '<leader>dm', ':delm A-Z<CR>')
 
 vim.cmd([[
     " autocmd!
