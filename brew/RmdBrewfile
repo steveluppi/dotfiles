@@ -12,7 +12,6 @@ brew "gh"
 brew "imagemagick"
 brew "ollama"
 brew "ruby-build"
-brew "rbenv"
 
 cask "session-manager-plugin"
 cask "there"
