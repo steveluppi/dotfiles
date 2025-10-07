@@ -1,9 +1,18 @@
 -- Set up the local functions that we are going to use
 MY_MODS = 'cmd-ctrl-alt'
 
+local vimmouse = require('Spoons/vimmouse')
+vimmouse(MY_MODS, 'm')
+
 local open_app = function(mods, key, name)
   hs.hotkey.bind(mods, key, function()
-    hs.application.launchOrFocus(name)
+    local foremost = hs.application.frontmostApplication()
+
+    if foremost:name() == name then
+      hs.eventtap.keyStroke('cmd', 'h')
+    else
+      hs.application.launchOrFocus(name)
+    end
   end)
 end
 
@@ -36,6 +45,9 @@ hs.hotkey.bind(MY_MODS, '.', function() hs.alert.show('Main') end)
 -- Easy way to reload while working on the config
 hs.hotkey.bind(MY_MODS, "r", function() hs.reload() end)
 
+local f = io.open('./my_modals/init.lua', 'r')
+if f~=nil then io.close(f) require "my_modals" end
+
 modal_shorts = hs.hotkey.modal.new(MY_MODS, 'pad0')
 function modal_shorts:entered() hs.alert'Entered Shortcuts Mode' end
 function modal_shorts:exited() hs.alert'Exited Shortcuts Mode' end
@@ -47,22 +59,6 @@ modal_shorts:bind('', 'pad1', send_it('Aetna Better Health of Oklahoma'))
 modal_shorts:bind('', 'pad2', send_it('aetna_ok'))
 modal_shorts:bind('', 'pad3', send_it('Aetna::RosterHeaderValidator'))
 
-modal_meet = hs.hotkey.modal.new(MY_MODS, 'pad5')
-function modal_meet:entered() hs.alert'Entered Meeting Mode' end
-function modal_meet:exited() hs.alert'Exited Meeting Mode' end
-modal_meet:bind(MY_MODS, 'pad.', function() hs.alert.show('Meeting') end)
-modal_meet:bind(MY_MODS, '.', function() hs.alert.show('Meeting') end)
-modal_meet:bind(MY_MODS, 'pad*', function() modal_meet:exit() end)
-modal_meet:bind('', "pad0", function() hs.eventtap.keyStroke('alt', 'y') end)
-modal_meet:bind('', "pad1", function() hs.eventtap.keyStroke('cmd-shift', 'a') end)
-modal_meet:bind('', "pad2", function() hs.eventtap.keyStroke('cmd-shift', 'v') end)
-modal_meet:bind('', "pad3", function() hs.eventtap.keyStroke('cmd-shift', 'd') end)
-modal_meet:bind('', "pad4", function() hs.eventtap.keyStroke('cmd', 'd') end)
-modal_meet:bind('', "pad5", function() hs.eventtap.keyStroke('cmd-shift', 'f') end)
-modal_meet:bind('', "pad6", function() hs.eventtap.keyStroke('cmd', 'e') end)
-modal_meet:bind('', "pad7", function() hs.shortcuts.run("Desk Audio") end)
-modal_meet:bind('', "pad9", function() hs.shortcuts.run("Headset Audio") end)
-modal_meet:bind('', 'pad+', function() hs.eventtap.keyStroke('cmd-shift', '5') end)
 
 modal_dev = hs.hotkey.modal.new(MY_MODS, 'pad2')
 function modal_dev:entered() hs.alert'Entered Dev Mode' end
@@ -70,19 +66,14 @@ function modal_dev:exited() hs.alert'Exited Dev Mode' end
 modal_dev:bind(MY_MODS, 'pad.', function() hs.alert.show('Dev') end)
 modal_dev:bind(MY_MODS, '.', function() hs.alert.show('Dev') end)
 modal_dev:bind(MY_MODS, 'pad*', function() modal_dev:exit() end)
-modal_dev:bind('', 'pad0', tmux_send_it('0'))
-modal_dev:bind('', 'pad1', tmux_send_it('1'))
-modal_dev:bind('', 'pad2', tmux_send_it('2'))
-modal_dev:bind('', 'pad3', tmux_send_it('3'))
-modal_dev:bind('', 'pad7', send_it('1gt'))
-modal_dev:bind('', 'pad8', send_it('2gt'))
-modal_dev:bind('', 'pad9', send_it('3gt'))
 modal_dev:bind('', 'F1', tmux_send_it('0'))
 modal_dev:bind('', 'F2', tmux_send_it('1'))
 modal_dev:bind('', 'F3', tmux_send_it('2'))
 modal_dev:bind('', 'F4', tmux_send_it('3'))
-modal_dev:bind('', 'F9', send_it('1gt'))
-modal_dev:bind('', 'F10', send_it('2gt'))
+modal_dev:bind('', 'F5', tmux_send_it('4'))
+modal_dev:bind('', 'F6', tmux_send_it('5'))
+modal_dev:bind('', 'F7', tmux_send_it('6'))
+modal_dev:bind('', 'F8', tmux_send_it('7'))
 
 modal_test = hs.hotkey.modal.new(MY_MODS, 'pad3')
 function modal_test:entered() hs.alert'Entered Test Mode' end
@@ -90,6 +81,16 @@ function modal_test:exited() hs.alert'Exited Test Mode' end
 modal_test:bind(MY_MODS,'pad.', function() hs.alert.show('Test') end)
 modal_test:bind(MY_MODS,'.', function() hs.alert.show('Test') end)
 modal_test:bind(MY_MODS, 'pad*', function() modal_test:exit() end)
+
+modal_email = hs.hotkey.modal.new(MY_MODS, 'F11')
+function modal_email:entered() hs.alert'Entered Email Mode' end
+function modal_email:exited() hs.alert'Exited Email Mode' end
+modal_email:bind(MY_MODS,'pad.', function() hs.alert.show('Email') end)
+modal_email:bind(MY_MODS,'.', function() hs.alert.show('Email') end)
+modal_email:bind(MY_MODS, 'pad*', function() modal_email:exit() end)
+modal_email:bind(MY_MODS, 'F11', function() modal_email:exit() end)
+modal_email:bind('', 'F5', send_it('e'))
+modal_email:bind('', 'F6', send_it('#'))
 
 modal_demo = hs.hotkey.modal.new(MY_MODS, 'p')
 function modal_demo:entered() hs.alert'Entered Demo Mode' end
@@ -104,14 +105,8 @@ modal_demo:bind(MY_MODS, 'p', function() modal_demo:exit() end)
 modal_vim = hs.hotkey.modal.new(MY_MODS, 'F12')
 function modal_vim:entered() hs.alert'Entered Vim Mode' end
 function modal_vim:exited() hs.alert'Exited Vim Mode' end
--- modal_vim:bind('','F1', send_it('1gt'))
--- modal_vim:bind('','F2', send_it('2gt'))
-modal_vim:bind('', 'F1', function()
-  sp = hs.spaces.missionControlSpaceNames()
-  local log = hs.logger.new('windowPos','debug')
-  log.i(hs.inspect.inspect(sp))
-  hs.spaces.gotoSpace(3)
-end)
+modal_vim:bind('','F1', send_it('1gt'))
+modal_vim:bind('','F2', send_it('2gt'))
 modal_vim:bind('','F3', send_it('3gt'))
 modal_vim:bind('','F4', send_it('4gt'))
 modal_vim:bind('','F5', tmux_send_it('1'))
@@ -123,10 +118,11 @@ modal_vim:bind(MY_MODS, 'F12', function() modal_vim:exit() end)
 --
 -- Work, email and personal zoom link from a hotkey!
 hs.hotkey.bind(MY_MODS, "e", send_it("steve@rubiconmd.com"))
+hs.hotkey.bind(MY_MODS, "c", send_it("C850432"))
 hs.hotkey.bind(MY_MODS, "z", send_it("https://rubiconmd.zoom.us/j/7111411118"))
 
 local f = io.open('./priv/init.lua', 'r')
-if f~=nil then io.close(f) require "priv" else return false end
+if f~=nil then io.close(f) require "priv" end
 
 -- Handy Dandy Date-ness
 -- h for "heading"
@@ -150,23 +146,28 @@ hs.hotkey.bind('', 'F13', function()
 end)
 hs.hotkey.bind(MY_MODS, 't', function()
   local win = hs.window.focusedWindow()
-  win:move(hs.geometry.rect(0,1730, 1280,430))
+  win:move(hs.geometry.rect(1200,25,1435,540))
 end)
 hs.hotkey.bind('', 'F19', function()
   local win = hs.window.focusedWindow()
-  win:move(hs.geometry.rect(0,1730, 1280,430))
+  -- The Bottom Corner
+  -- win:move(hs.geometry.rect(0,1730, 1280,430))
+  -- The TOp Center
+  win:move(hs.geometry.rect(1200,25,1435,540))
 end)
 
-open_app('', "F2", "Wezterm")
-open_app('', "F16", "Wezterm")
-open_app('', "F3", "Slack")
+open_app('', "F1", "WezTerm")
+open_app('', "F16", "WezTerm")
+open_app('', "F2", "Slack")
 open_app('', "F17", "Slack")
-open_app('', "F4", "Arc")
-open_app('', "F18", "Arc")
+open_app('', "F3", "Google Chrome")
+open_app('', "F18", "Google Chrome")
+open_app('', "F4", "Bruno")
+open_app('', "F5", "Cursor")
 
 run_shortcut('', "F7", "Desk Audio")
-run_shortcut('', "F8", "Headset Audio")
-run_shortcut('', "F9", "Standing Audio")
+run_shortcut('', "F8", "TOZO Audio Cans")
+run_shortcut('', "F9", "Bose Audio")
 run_shortcut('', "F10", "Laptop Audio")
 
 -- Simple notification to know that it has loaded up successfully
