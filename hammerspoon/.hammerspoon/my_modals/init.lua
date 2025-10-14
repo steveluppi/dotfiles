@@ -11,8 +11,8 @@ modal_meet:bind('', "pad3", function() hs.eventtap.keyStroke('alt', 'y') end) --
 modal_meet:bind('', "pad4", function() hs.eventtap.keyStroke('cmd', 'd') end) -- Google Meet Mute
 modal_meet:bind('', "pad5", function() hs.eventtap.keyStroke('cmd', 'e') end) -- Google Meet Video
 modal_meet:bind('', "pad6", function() hs.eventtap.keyStroke('cmd-ctrl', 'h') end) --Google Meet Raise Hand 
-modal_meet:bind('', "pad7", function() hs.eventtap.keyStroke('cmd-shift', 'o') end) -- Teams Mute
-modal_meet:bind('', "pad8", function() hs.eventtap.keyStroke('cmd-shift', 'm') end) -- Teams Video
+modal_meet:bind('', "pad7", function() hs.eventtap.keyStroke('cmd-shift', 'm') end) -- Teams Mute
+modal_meet:bind('', "pad8", function() hs.eventtap.keyStroke('cmd-shift', 'o') end) -- Teams Video
 modal_meet:bind('', 'pad+', function() hs.eventtap.keyStroke('cmd-shift', '5') end)
 
 modal_zoom = hs.hotkey.modal.new(MY_MODS, 'F5')
