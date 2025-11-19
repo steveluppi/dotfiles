@@ -1,0 +1,28 @@
+hs.hotkey.bind('', 'F7', function()
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:1"')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:1"')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:2"')
+  hs.alert.show('Desk Audio')
+end)
+
+hs.hotkey.bind('', 'F8', function()
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u 58-FC-C6-D3-89-FE:output')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u 58-FC-C6-D3-89-FE:output')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u "AppleUSBAudioEngine:BLUE MICROPHONE:Blue Snowball:201109:1"')
+  hs.alert.show('Tozo Cans and Blue Mic')
+end)
+
+hs.hotkey.bind('', 'F9', function()
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u 94-4B-F8-55-6E-D1:output')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u 94-4B-F8-55-6E-D1:output ')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u "AppleUSBAudioEngine:BLUE MICROPHONE:Blue Snowball:201109:1"')
+  hs.alert.show('Tozo Buds and Blue Mic')
+end)
+
+hs.hotkey.bind('', 'F10', function()
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u BuiltInSpeakerDevice')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u BuiltInSpeakerDevice')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u BuiltInMicrophoneDevice')
+  hs.alert.show('Tozo Buds and Blue Mic')
+end)
+

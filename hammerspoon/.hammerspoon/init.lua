@@ -48,6 +48,9 @@ hs.hotkey.bind(MY_MODS, "r", function() hs.reload() end)
 local f = io.open('./my_modals/init.lua', 'r')
 if f~=nil then io.close(f) require "my_modals" end
 
+f = io.open('./my_audio/init.lua', 'r')
+if f~=nil then io.close(f) require "my_audio" end
+
 modal_shorts = hs.hotkey.modal.new(MY_MODS, 'pad0')
 function modal_shorts:entered() hs.alert'Entered Shortcuts Mode' end
 function modal_shorts:exited() hs.alert'Exited Shortcuts Mode' end
@@ -102,18 +105,20 @@ modal_demo:bind(MY_MODS,'pad.', function() hs.alert.show('Demo') end)
 modal_demo:bind(MY_MODS,'.', function() hs.alert.show('Demo') end)
 modal_demo:bind(MY_MODS, 'p', function() modal_demo:exit() end)
 
-modal_vim = hs.hotkey.modal.new(MY_MODS, 'F12')
-function modal_vim:entered() hs.alert'Entered Vim Mode' end
-function modal_vim:exited() hs.alert'Exited Vim Mode' end
-modal_vim:bind('','F1', send_it('1gt'))
-modal_vim:bind('','F2', send_it('2gt'))
-modal_vim:bind('','F3', send_it('3gt'))
-modal_vim:bind('','F4', send_it('4gt'))
-modal_vim:bind('','F5', tmux_send_it('1'))
-modal_vim:bind('','F6', tmux_send_it('2'))
-modal_vim:bind(MY_MODS,'pad.', function() hs.alert.show('Vim') end)
-modal_vim:bind(MY_MODS,'.', function() hs.alert.show('Vim') end)
-modal_vim:bind(MY_MODS, 'F12', function() modal_vim:exit() end)
+modal_tmux = hs.hotkey.modal.new(MY_MODS, 'F12')
+function modal_tmux:entered() hs.alert'Entered tmux Mode' end
+function modal_tmux:exited() hs.alert'Exited tmux Mode' end
+modal_tmux:bind('','F1', tmux_send_it('0'))
+modal_tmux:bind('','F2', tmux_send_it('1'))
+modal_tmux:bind('','F3', tmux_send_it('2'))
+modal_tmux:bind('','F4', tmux_send_it('3'))
+modal_tmux:bind('','F5', tmux_send_it('4'))
+modal_tmux:bind('','F6', tmux_send_it('5'))
+modal_tmux:bind('','F7', tmux_send_it('6'))
+modal_tmux:bind('','F8', tmux_send_it('7'))
+modal_tmux:bind(MY_MODS,'pad.', function() hs.alert.show('tmux') end)
+modal_tmux:bind(MY_MODS,'.', function() hs.alert.show('tmux') end)
+modal_tmux:bind(MY_MODS, 'F12', function() modal_tmux:exit() end)
 
 --
 -- Work, email and personal zoom link from a hotkey!
@@ -144,6 +149,7 @@ hs.hotkey.bind('', 'F13', function()
   win = hs.window.find('Slack')
   log.i(win)
 end)
+
 hs.hotkey.bind(MY_MODS, 't', function()
   local win = hs.window.focusedWindow()
   win:move(hs.geometry.rect(1200,25,1435,540))
@@ -164,11 +170,7 @@ open_app('', "F3", "Google Chrome")
 open_app('', "F18", "Google Chrome")
 open_app('', "F4", "Bruno")
 open_app('', "F5", "Cursor")
-
-run_shortcut('', "F7", "Desk Audio")
-run_shortcut('', "F8", "TOZO Audio Cans")
-run_shortcut('', "F9", "Bose Audio")
-run_shortcut('', "F10", "Laptop Audio")
+open_app('', "F6", "Spotify")
 
 -- Simple notification to know that it has loaded up successfully
 hs.alert.show("Config loaded")
