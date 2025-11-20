@@ -129,6 +129,17 @@ hs.hotkey.bind(WM_MODS, 'k', function()
   end
 end)
 
+hs.hotkey.bind(WM_MODS_EXTRA, 'c', function()
+  local win = getFrontmostWindow()
+  if win then
+    local screen = win:screen()
+    local screenFrame = screen:frame()
+    local w = screenFrame.w *.5
+    local h = screenFrame.h *.5
+    win:move(hs.geometry.rect(w/2,h/2,w,h))
+  end
+end)
+
 -- Move video window to bottom of screen, with the height of the video window on top visible
 hs.hotkey.bind(WM_MODS_EXTRA, 'down', function()
   local win = getFrontmostWindow()
