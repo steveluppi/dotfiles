@@ -15,6 +15,7 @@ here:
 [no-cd]
 link:
   @ln ~/github/rubicon/lib/tasks/_sjl_luppi.rake lib/tasks || true
+  @ln ~/github/rubicon/config/credentials/dev.key config/credentials/dev.key || true
   @ln ~/github/rubicon/config/credentials/qa.key config/credentials/qa.key || true
   @ln ~/github/rubicon/config/credentials/demo.key config/credentials/demo.key || true
   @ln ~/github/rubicon/config/credentials/production.key config/credentials/production.key || true
