@@ -1,0 +1,5 @@
+[core]
+  excludesfile = /Users/steveluppi/.gitignore_global
+[user]
+  email = steve@rubiconmd.com
+  name = Steve Luppi
