@@ -1,5 +1,7 @@
 -- Set up the local functions that we are going to use
 MY_MODS = 'cmd-ctrl-alt'
+WM_MODS = 'ctrl-alt'
+WM_MODS_EXTRA = 'ctrl-alt-shift'
 
 local vimmouse = require('Spoons/vimmouse')
 vimmouse(MY_MODS, 'm')
@@ -50,6 +52,9 @@ if f~=nil then io.close(f) require "my_modals" end
 
 f = io.open('./my_audio/init.lua', 'r')
 if f~=nil then io.close(f) require "my_audio" end
+
+f = io.open('./my_wm/init.lua', 'r')
+if f~=nil then io.close(f) require "my_wm" end
 
 modal_shorts = hs.hotkey.modal.new(MY_MODS, 'pad0')
 function modal_shorts:entered() hs.alert'Entered Shortcuts Mode' end
@@ -148,18 +153,6 @@ hs.hotkey.bind('', 'F13', function()
   log.i(win:frame())
   win = hs.window.find('Slack')
   log.i(win)
-end)
-
-hs.hotkey.bind(MY_MODS, 't', function()
-  local win = hs.window.focusedWindow()
-  win:move(hs.geometry.rect(1200,25,1435,540))
-end)
-hs.hotkey.bind('', 'F19', function()
-  local win = hs.window.focusedWindow()
-  -- The Bottom Corner
-  -- win:move(hs.geometry.rect(0,1730, 1280,430))
-  -- The TOp Center
-  win:move(hs.geometry.rect(1200,25,1435,540))
 end)
 
 open_app('', "F1", "WezTerm")
