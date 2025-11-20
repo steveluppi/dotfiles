@@ -1,7 +1,7 @@
 hs.hotkey.bind('', 'F7', function()
   hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:1"')
   hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:1"')
-  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u "AppleUSBAudioEngine:Unknown Manufacturer:Jabra SPEAK 510 USB:1C48F9BC407F020A00:2"')
+  hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u "AppleUSBAudioEngine:BLUE MICROPHONE:Blue Snowball:201109:1"')
   hs.alert.show('Desk Audio')
 end)
 
