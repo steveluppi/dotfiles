@@ -129,6 +129,50 @@ hs.hotkey.bind(WM_MODS, 'k', function()
   end
 end)
 
+hs.hotkey.bind(WM_MODS_EXTRA, 'h', function()
+  local win = getFrontmostWindow()
+  if win then
+    local screen = win:screen()
+    local screenFrame = screen:frame()
+    local w = screenFrame.w *.75
+    local h = screenFrame.h
+    win:move(hs.geometry.rect(0,0,w,h))
+  end
+end)
+
+hs.hotkey.bind(WM_MODS_EXTRA, 'j', function()
+  local win = getFrontmostWindow()
+  if win then
+    local screen = win:screen()
+    local screenFrame = screen:frame()
+    local w = screenFrame.w *.25
+    local h = screenFrame.h
+    win:move(hs.geometry.rect(0,0,w,h))
+  end
+end)
+
+hs.hotkey.bind(WM_MODS_EXTRA, 'k', function()
+  local win = getFrontmostWindow()
+  if win then
+    local screen = win:screen()
+    local screenFrame = screen:frame()
+    local w = screenFrame.w *.5
+    local h = screenFrame.h
+    win:move(hs.geometry.rect(w/2,0,w,h))
+  end
+end)
+
+hs.hotkey.bind(WM_MODS_EXTRA, 'l', function()
+  local win = getFrontmostWindow()
+  if win then
+    local screen = win:screen()
+    local screenFrame = screen:frame()
+    local w = screenFrame.w *.25
+    local h = screenFrame.h
+    win:move(hs.geometry.rect(screenFrame.w-w,0,w,h))
+  end
+end)
+
 hs.hotkey.bind(WM_MODS_EXTRA, 'c', function()
   local win = getFrontmostWindow()
   if win then
