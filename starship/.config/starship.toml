@@ -3,6 +3,8 @@
 
 add_newline = false
 
+format = '$all$fill$time'
+
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
@@ -12,5 +14,13 @@ truncate_to_repo = false
 truncation_length = 10
 truncation_symbol = '<<<'
 
+[fill]
+symbol = ' '
+
 [package]
 disabled=true
+
+[time]
+disabled = false
+time_format = "%I:%M %p"
+use_12hr = true
