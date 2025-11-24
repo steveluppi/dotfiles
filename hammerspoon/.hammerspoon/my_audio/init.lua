@@ -23,6 +23,6 @@ hs.hotkey.bind('', 'F10', function()
   hs.execute('/opt/homebrew/bin/SwitchAudioSource -t output -u BuiltInSpeakerDevice')
   hs.execute('/opt/homebrew/bin/SwitchAudioSource -t system -u BuiltInSpeakerDevice')
   hs.execute('/opt/homebrew/bin/SwitchAudioSource -t input -u BuiltInMicrophoneDevice')
-  hs.alert.show('Tozo Buds and Blue Mic')
+  hs.alert.show('Laptop Audio')
 end)
 
