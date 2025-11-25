@@ -17,7 +17,9 @@ alias be="bundle exec"
 alias dd="bundle exec bin/dumpling download"
 
 # aws cli
-alias aws_ssh_qa_app="aws ssm start-session --target i-04e764eb5b997afad"
+alias ssh_to_qa_app="aws ssm start-session --target i-04e764eb5b997afad"
+alias ssh_to="aws ssm start-session --target"
+alias ssh_tunnel_qa_db="aws ssm start-session --target i-0f230dc41ae87ea4a --document-name AWS-StartPortForwardingSessionToRemoteHost --parameters portNumber="5432",localPortNumber="5432",host=rds.nophi-backend-qa.rubiconmd.com"
 
 # docker extensions
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
@@ -138,7 +140,7 @@ function pomodoro(){
 }
 
 function mgr(){
-	for name in jason dylan paula jim
+	for name in jim jason alfonso dylan jorge
 	do
 		task add +$name +mgr $@
 	done
@@ -313,6 +315,6 @@ load-nvmrc() {
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
+# add-zsh-hook chpwd load-nvmrc
 
 path+=('/Users/steveluppi/bin')
