@@ -3,8 +3,6 @@
 
 add_newline = false
 
-format = '$all$fill$time'
-
 # Replace the '❯' symbol in the prompt with '➜'
 [character] # The name of the module we are configuring is 'character'
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
@@ -22,5 +20,6 @@ disabled=true
 
 [time]
 disabled = false
-time_format = "%I:%M %p"
+format = "$time($style) "
+time_format = "%l:%M %p"
 use_12hr = true
