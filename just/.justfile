@@ -17,6 +17,7 @@ link:
   @ln ~/github/rubicon/lib/tasks/_sjl_luppi.rake lib/tasks || true
   @ln ~/github/rubicon/config/credentials/dev.key config/credentials/dev.key || true
   @ln ~/github/rubicon/config/credentials/qa.key config/credentials/qa.key || true
+  @ln ~/github/rubicon/config/credentials/expendable.key config/credentials/expendable.key || true
   @ln ~/github/rubicon/config/credentials/demo.key config/credentials/demo.key || true
   @ln ~/github/rubicon/config/credentials/production.key config/credentials/production.key || true
 
@@ -43,3 +44,12 @@ ui:
   git fetch --all --tags --prune
   git pull
   npm start
+
+[no-cd]
+cleanup_docker:
+  @docker ps -a --format "{{ "{{" }}.Names{{ "}}" }}" | xargs -n 1 just _kill_unused_docker
+  @docker volume prune -f
+
+[no-cd]
+_kill_unused_docker target:
+  @[ -f $(docker inspect --format='{{ "{{" }}index .Config.Labels "com.docker.compose.project.config_files"{{ "}}" }}' {{target}}) ] || docker rm {{target}}
